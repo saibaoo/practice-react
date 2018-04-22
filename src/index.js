@@ -1,18 +1,42 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-function ToonList(props){
-	const list =props.cartoon
-	// const toons = list.map((list,index)=><li key={index}>{list}</li>)
-	return <ul>
-{	list.map((list,index)=><li key={index}>{list}</li>)}
-	</ul>
-}
+class Formtest extends React.Component {
+	constructor(props) {
+		super(props)
+			this.state = {value:'padin'}
+		}
 
-const cartoons = ['Pickchu','Balidin', 'tom','tom']
+		handleSubmit = (e) =>{
+				e.preventDefault()
+			console.log(this.state.value);
+
+		}
+
+		handleChange = (e) => {
+			this.setState({
+				value: !this.state.value
+			})
+		}
+
+		render(){
+			return(
+				<form onSubmit={this.handleSubmit}>
+			<select value={this.state.value} onChange={this.handleChange}>
+				<option value='pikachu'>Pikachu</option>
+					<option value='padin'>Padin</option>
+			</select>
+			<input type="submit" value="Go ahead " />
+				</form>
+			)
+
+
+		}
+
+	}
 
 
 ReactDOM.render(
-	<ToonList cartoon ={cartoons}/>,
+	<Formtest />,
 	document.getElementById('root')
 );
