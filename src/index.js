@@ -1,21 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-function Cartoon(props) {
-	return <h1>hello, {props.name} on {props.show}</h1>
+class Clock extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			date : new Date()
+		}
+	}
+	componentDidMount(){
+	this.timer = setInterval(()=>this.start(),1000);
+	}
+
+	componentWillUnmount(){
+
+	}
+
+	start(){
+		this.setState({
+			date: new Date()
+		});
+	}
+render(){
+	return <h1>Time is: {this.state.date.toLocaleTimeString()}</h1>
 }
-// class Cartoon extends React.Component{
-// 	render(){
-// 		return <h1>Hello,{this.props.name}</h1>
-// 	}
-// }
-function Show(){
-	return <div>
-						<Cartoon name="Sai" show="Pokemoon"/>
-						<Cartoon name="Jassmine" show="Alladin"/>
-					</div>
 }
-ReactDOM.render(
-	 <Show/>,
-	document.getElementById('root')
-	);
+
+	ReactDOM.render(
+		 <Clock/>,
+		document.getElementById('root')
+		);
